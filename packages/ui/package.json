@@ -9,7 +9,9 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./*": "./dist/*.js"
+    "./*": "./dist/*.js",
+    "./globals.css": "./src/styles/globals.css",
+    "./contexts/*": "./src/contexts/*.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -28,6 +30,7 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/cli": "^4.1.5",
+    "@tailwindcss/forms": "^0.5.10",
     "@types/react": "^19.1.0",
     "eslint": "^9.31.0",
     "tailwindcss": "^4.1.5",
@@ -80,6 +83,7 @@
     "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
+    "tw-animate-css": "^1.3.6",
     "vaul": "^1.1.2",
     "zod": "^3.25.71"
   }
