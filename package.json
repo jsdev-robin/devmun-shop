@@ -8,7 +8,6 @@
     "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "new-app": "pnpm create create-next-app@latest"
-
   },
   "devDependencies": {
     "prettier": "^3.6.0",
@@ -18,5 +17,24 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
+    "@radix-ui/react-visually-hidden": "^1.2.3",
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tanstack/react-table": "^8.21.3",
+    "async-mutex": "^0.5.0",
+    "axios": "^1.11.0",
+    "date-fns": "^4.1.0",
+    "jose": "^6.0.12",
+    "lucide-react": "^0.536.0",
+    "mapbox-gl": "^3.14.0",
+    "next": "15.4.5",
+    "react-hook-form": "^7.62.0",
+    "react-muntaha-uploader": "^3.0.9",
+    "react-redux": "^9.2.0",
+    "recharts": "^2.15.4",
+    "sonner": "^2.0.7",
+    "zod": "^3.25.71"
   }
 }

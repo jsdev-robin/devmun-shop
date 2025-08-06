@@ -7,6 +7,58 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.1
+        version: 5.2.1(react-hook-form@7.62.0)
+      '@radix-ui/react-visually-hidden':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
+      '@reduxjs/toolkit':
+        specifier: ^2.8.2
+        version: 2.8.2(react-redux@9.2.0)(react@19.1.0)
+      '@tanstack/react-table':
+        specifier: ^8.21.3
+        version: 8.21.3(react-dom@19.1.0)(react@19.1.0)
+      async-mutex:
+        specifier: ^0.5.0
+        version: 0.5.0
+      axios:
+        specifier: ^1.11.0
+        version: 1.11.0
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
+      jose:
+        specifier: ^6.0.12
+        version: 6.0.12
+      lucide-react:
+        specifier: ^0.536.0
+        version: 0.536.0(react@19.1.0)
+      mapbox-gl:
+        specifier: ^3.14.0
+        version: 3.14.0
+      next:
+        specifier: 15.4.5
+        version: 15.4.5(react-dom@19.1.0)(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.62.0
+        version: 7.62.0(react@19.1.0)
+      react-muntaha-uploader:
+        specifier: ^3.0.9
+        version: 3.0.9
+      react-redux:
+        specifier: ^9.2.0
+        version: 9.2.0(react@19.1.0)(redux@5.0.1)
+      recharts:
+        specifier: ^2.15.4
+        version: 2.15.4(react-dom@19.1.0)(react@19.1.0)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.1.0)(react@19.1.0)
+      zod:
+        specifier: ^3.25.71
+        version: 3.25.71
     devDependencies:
       prettier:
         specifier: ^3.6.0
@@ -230,9 +282,6 @@ importers:
 
   packages/ui:
     dependencies:
-      '@hookform/resolvers':
-        specifier: ^5.2.1
-        version: 5.2.1(react-hook-form@7.62.0)
       '@radix-ui/react-accordion':
         specifier: ^1.2.11
         version: 1.2.11(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
@@ -305,15 +354,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.7
         version: 1.2.7(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
-      '@reduxjs/toolkit':
-        specifier: ^2.8.2
-        version: 2.8.2(react-redux@9.2.0)(react@19.1.0)
-      async-mutex:
-        specifier: ^0.5.0
-        version: 0.5.0
-      axios:
-        specifier: ^1.11.0
-        version: 1.11.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -323,9 +363,6 @@ importers:
       cmdk:
         specifier: ^1.1.1
         version: 1.1.1(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
-      date-fns:
-        specifier: ^4.1.0
-        version: 4.1.0
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
@@ -335,15 +372,6 @@ importers:
       input-otp:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@19.1.0)(react@19.1.0)
-      jose:
-        specifier: ^6.0.12
-        version: 6.0.12
-      lucide-react:
-        specifier: ^0.536.0
-        version: 0.536.0(react@19.1.0)
-      mapbox-gl:
-        specifier: ^3.14.0
-        version: 3.14.0
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0)(react@19.1.0)
@@ -356,21 +384,9 @@ importers:
       react-hook-form:
         specifier: ^7.62.0
         version: 7.62.0(react@19.1.0)
-      react-muntaha-uploader:
-        specifier: ^3.0.9
-        version: 3.0.9
-      react-redux:
-        specifier: ^9.2.0
-        version: 9.2.0(@types/react@19.1.0)(react@19.1.0)(redux@5.0.1)
       react-resizable-panels:
         specifier: ^3.0.4
         version: 3.0.4(react-dom@19.1.0)(react@19.1.0)
-      recharts:
-        specifier: ^2.15.4
-        version: 2.15.4(react-dom@19.1.0)(react@19.1.0)
-      sonner:
-        specifier: ^2.0.7
-        version: 2.0.7(react-dom@19.1.0)(react@19.1.0)
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
@@ -380,9 +396,6 @@ importers:
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
-      zod:
-        specifier: ^3.25.71
-        version: 3.25.71
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -2191,7 +2204,7 @@ packages:
       '@standard-schema/utils': 0.3.0
       immer: 10.1.1
       react: 19.1.0
-      react-redux: 9.2.0(@types/react@19.1.0)(react@19.1.0)(redux@5.0.1)
+      react-redux: 9.2.0(react@19.1.0)(redux@5.0.1)
       redux: 5.0.1
       redux-thunk: 3.1.0(redux@5.0.1)
       reselect: 5.1.1
@@ -2390,6 +2403,23 @@ packages:
       postcss: 8.5.3
       tailwindcss: 4.1.5
     dev: true
+
+  /@tanstack/react-table@8.21.3(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@tanstack/table-core': 8.21.3
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    dev: false
+
+  /@tanstack/table-core@8.21.3:
+    resolution: {integrity: sha512-ldZXEhOBb8Is7xLs01fR3YEc3DERiz5silj8tnGkFZytt1abEvl/GhUmCE0PMLaMPTa3Jk4HbKmRlHmu+gCftg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /@tybys/wasm-util@0.10.0:
     resolution: {integrity: sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ==}
@@ -5162,7 +5192,7 @@ packages:
       react-dom: 19.1.0(react@19.1.0)
     dev: false
 
-  /react-redux@9.2.0(@types/react@19.1.0)(react@19.1.0)(redux@5.0.1):
+  /react-redux@9.2.0(react@19.1.0)(redux@5.0.1):
     resolution: {integrity: sha512-ROY9fvHhwOD9ySfrF0wmvu//bKCQ6AeZZq1nJNtbDC+kk5DuSuNX/n6YWYF/SYy7bSba4D4FSz8DJeKY/S/r+g==}
     peerDependencies:
       '@types/react': ^18.2.25 || ^19
@@ -5174,7 +5204,6 @@ packages:
       redux:
         optional: true
     dependencies:
-      '@types/react': 19.1.0
       '@types/use-sync-external-store': 0.0.6
       react: 19.1.0
       redux: 5.0.1

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter, Merriweather, Poppins, Roboto } from 'next/font/google';
 import '@repo/ui/globals.css';
-import { Toaster } from '@repo/ui/components/sonner';
-import { cn } from '@repo/ui/libs/utils';
 import { ThemeProvider } from '@repo/ui/contexts/theme-provider';
+import { Toaster } from '@repo/ui/components/sonner';
+import StoreProvider from './StoreProvider';
+import { cn } from '@repo/ui/libs/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -88,10 +89,12 @@ export default function RootLayout({
           merriweather.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Toaster position="bottom-right" richColors />
-          {children}
-        </ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            {children}
+            <Toaster position="bottom-right" richColors />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );
