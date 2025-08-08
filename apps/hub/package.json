@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-     "dev": "next dev --port 3001 --turbopack",
+    "dev": "next dev --port 3001 --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@repo/ui": "workspace:*",
     "next": "15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0"
