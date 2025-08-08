@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 
 import { TrendingUp } from 'lucide-react';
@@ -95,6 +96,12 @@ const page = () => {
       </div>
     </div>
   );
+=======
+import React from 'react';
+
+const page = () => {
+  return <div className="bg-red-500">page</div>;
+>>>>>>> bd1486833b389c625f988bb15f97b50f3184cd6f
 };
 
 export default page;
