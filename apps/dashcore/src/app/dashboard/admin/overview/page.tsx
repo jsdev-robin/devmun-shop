@@ -1,7 +1,14 @@
 import React from 'react';
+import AdminOverviewSalesReport from '../../../../components/dashboard/admin/pages/overview/AdminOverviewSalesReport';
+import AdminOverviewDistributionStats from '../../../../components/dashboard/admin/pages/overview/AdminOverviewDistributionStats';
 
-const page = () => {
-  return <div className="bg-red-500">page</div>;
+const AdminOverviewPage = () => {
+  return (
+    <>
+      <AdminOverviewSalesReport />
+      <AdminOverviewDistributionStats />
+    </>
+  );
 };
 
-export default page;
+export default AdminOverviewPage;

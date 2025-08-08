@@ -14,7 +14,7 @@ import {
 } from '@repo/ui/components/sidebar';
 import { Separator } from '@repo/ui/components/separator';
 import { cookies } from 'next/headers';
-import { AppSidebar } from '../../../components/dashboard/seller/layouts/app-sidebar';
+import { SellerDashSidebar } from '../../../components/dashboard/seller/layouts/seller-dash-sidebar';
 
 const AdminDashboardLayout = async ({
   children,
@@ -33,7 +33,7 @@ const AdminDashboardLayout = async ({
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
+      <SellerDashSidebar />
       <SidebarInset className="overflow-hidden">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 bg-sidebar">
           <div className="flex items-center gap-2 px-4">
