@@ -1,7 +1,12 @@
 import React from 'react';
+import SellerSalesReport from '../../../../components/dashboard/seller/pages/overview/SellerSalesReport';
 
-const page = () => {
-  return <div>page</div>;
+const SellerOverviewPage = () => {
+  return (
+    <>
+      <SellerSalesReport />
+    </>
+  );
 };
 
-export default page;
+export default SellerOverviewPage;

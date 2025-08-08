@@ -36,7 +36,7 @@ const SignIn = () => {
     mode: 'onChange',
     defaultValues: {
       email: '',
-      password: '',
+      password: 'XLrewd875@',
       remember: false,
     },
   });
