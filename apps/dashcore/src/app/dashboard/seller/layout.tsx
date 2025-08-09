@@ -57,7 +57,7 @@ const AdminDashboardLayout = async ({
             </Breadcrumb>
           </div>
         </header>
-        <div className="p-4 space-y-4">{children}</div>
+        <div className="py-4 space-y-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

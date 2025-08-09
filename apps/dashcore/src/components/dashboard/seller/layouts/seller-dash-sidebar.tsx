@@ -1,20 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  GalleryVerticalEnd,
-  LayoutGrid,
-  Settings2,
-  SquareTerminal,
-  Tag,
-  Users,
-  UserSearch,
-  UserRoundPlus,
-} from 'lucide-react';
+import { GalleryVerticalEnd, LayoutGrid, Tag } from 'lucide-react';
 
 import { NavMain } from './nav-main';
 import { NavUser } from './nav-user';
@@ -34,103 +21,6 @@ const data = {
       logo: GalleryVerticalEnd,
       plan: 'Enterprise',
     },
-    {
-      name: 'Devmun2',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-    {
-      name: 'Devmun3',
-      logo: Command,
-      plan: 'Free',
-    },
-  ],
-  navMain: [
-    {
-      title: 'Playground',
-      url: '#',
-      icon: SquareTerminal,
-      // isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
   ],
 
   navCat: [
@@ -141,15 +31,15 @@ const data = {
       items: [
         {
           title: 'Categories',
-          url: '/admin/dashboard/categories',
+          url: '/dashboard/seller/product/categories',
         },
         {
           title: 'Sub Categories',
-          url: '/admin/dashboard/sub-categories',
+          url: '/dashboard/seller/product/sub-categories',
         },
         {
           title: 'Sub Sub Categories',
-          url: '/admin/dashboard/sub-sub-categories',
+          url: '/dashboard/seller/product/sub-sub-categories',
         },
       ],
     },
@@ -160,97 +50,48 @@ const data = {
       items: [
         {
           title: 'Brands',
-          url: '/admin/dashboard/brand',
+          url: '/dashboard/seller/product/brand',
         },
       ],
     },
   ],
-  navUsers: [
+  navProduct: [
     {
-      title: 'Customers',
-      url: '#',
-      icon: Users,
-      items: [
-        {
-          title: 'Customer List',
-          url: '/admin/dashboard/customer/list',
-        },
-        {
-          title: 'Customer Reviews',
-          url: '/admin/dashboard/customer/reviews',
-        },
-        {
-          title: 'Wallet',
-          url: '/admin/dashboard/wallet',
-        },
-        {
-          title: 'Wallet Bonus Setup',
-          url: '/admin/dashboard/wallet-bonus-setup',
-        },
-        {
-          title: 'Loyalty Points',
-          url: '/admin/dashboard/loyalty-points',
-        },
-      ],
-    },
-    {
-      title: 'Vendors',
+      title: 'Product',
       url: '#',
       icon: LayoutGrid,
       items: [
         {
-          title: 'Add New Vendor',
-          url: '/admin/dashboard/add-new-vendor',
+          title: 'Product list',
+          url: '/dashboard/seller/product/list',
         },
         {
-          title: 'Vendor List',
-          url: '/admin/dashboard/vendor-list',
+          title: 'Approved product list',
+          url: '/dashboard/seller/product/approved-list',
         },
         {
-          title: 'Withdraws',
-          url: '/admin/dashboard/withdraws',
+          title: 'New product request',
+          url: '/dashboard/seller/product/new-request',
         },
         {
-          title: 'Withdrawal Methods',
-          url: '/admin/dashboard/withdrawal-methods',
-        },
-      ],
-    },
-    {
-      title: 'Delivery Men',
-      url: '#',
-      icon: UserSearch,
-      items: [
-        {
-          title: 'Add New',
-          url: '/admin/dashboard/delivery-men/add-new',
+          title: 'Denied product request',
+          url: '/dashboard/seller/product/denied-request',
         },
         {
-          title: 'List',
-          url: '/admin/dashboard/delivery-men/list',
+          title: 'Add new product',
+          url: '/dashboard/seller/product/create/v1',
         },
         {
-          title: 'Withdraws',
-          url: '/admin/dashboard/delivery-men/withdraws',
+          title: 'Product gallery',
+          url: '/dashboard/seller/product/gallery',
         },
         {
-          title: 'Emergency Contact',
-          url: '/admin/dashboard/delivery-men/emergency-contact',
-        },
-      ],
-    },
-    {
-      title: 'Employees',
-      url: '#',
-      icon: UserRoundPlus,
-      items: [
-        {
-          title: 'Employee Role Setup',
-          url: '/admin/dashboard/employee-role-setup',
+          title: 'Bulk import',
+          url: '/dashboard/seller/product/bulk-import',
         },
         {
-          title: 'Employees',
-          url: '/admin/dashboard/employees',
+          title: 'Request Restock List',
+          url: '/dashboard/seller/product/request-restock-list',
         },
       ],
     },
@@ -266,9 +107,8 @@ export function SellerDashSidebar({
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavMain items={data.navCat} label="Product management" />
-        <NavMain items={data.navUsers} label="Users management" />
+        <NavMain items={data.navCat} label="Order management" />
+        <NavMain items={data.navProduct} label="Product management" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

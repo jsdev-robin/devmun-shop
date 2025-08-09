@@ -7,6 +7,8 @@
 @import 'tw-animate-css';
 @plugin "@tailwindcss/forms";
 
+@config "../../tailwind.config.ts";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -124,6 +126,7 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 0.5rem;
+  max-width: 1440px;
 
   @media (width >= theme(--breakpoint-sm)) {
     padding-inline: 1rem;
