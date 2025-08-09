@@ -120,7 +120,7 @@ const GridHeaderFilter = <T,>({ column }: { column: Column<T, unknown> }) => {
             <SelectGroup>
               <SelectItem value="all">All</SelectItem>
               {sortedUniqueSelectValues.map((value: string) => (
-                <SelectItem value={value.toLowerCase()} key={value}>
+                <SelectItem value={value} key={value}>
                   {value}
                 </SelectItem>
               ))}

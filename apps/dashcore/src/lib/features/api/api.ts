@@ -19,12 +19,12 @@ const rawBaseQuery = fetchBaseQuery({
 });
 
 const SKIP_REFRESH_ENDPOINTS = [
-  '/hub/auth/signin',
-  '/hub/auth/verify-2fa',
-  '/hub/auth/signup',
-  '/hub/auth/verify-email',
-  '/hub/auth/forgot-password',
-  '/hub/auth/reset-password',
+  '/auth/hub/signin',
+  '/auth/hub/verify-2fa',
+  '/auth/hub/signup',
+  '/auth/hub/verify-email',
+  '/auth/hub/forgot-password',
+  '/auth/hub/reset-password',
 ];
 
 const MAX_RETRIES = 2;
@@ -50,7 +50,7 @@ const baseQueryWithReauth: BaseQueryFn<
         const release = await mutex.acquire();
         try {
           const refreshResult = await rawBaseQuery(
-            { url: '/hub/auth/refresh-token', method: 'POST' },
+            { url: '/auth/hub/refresh-token', method: 'POST' },
             api,
             extraOptions,
           );

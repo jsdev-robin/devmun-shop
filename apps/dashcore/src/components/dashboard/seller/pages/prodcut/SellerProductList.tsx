@@ -100,6 +100,7 @@ const SellerProductList = () => {
             accessorKey: 'basicInfo.title',
             header: 'Title',
             meta: { filterVariant: 'text' },
+            enableHiding: false,
           },
           {
             id: 'basicInfo.description',
@@ -293,14 +294,6 @@ const SellerProductList = () => {
             id: 'seo.canonicalUrl',
             accessorKey: 'seo.canonicalUrl',
             header: 'Canonical URL',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'seo.keywords',
-            accessorKey: 'seo.keywords',
-            header: 'Keywords',
-            cell: ({ getValue }) =>
-              (getValue() as string[] | undefined)?.join(', ') ?? '',
             meta: { filterVariant: 'text' },
           },
           {
