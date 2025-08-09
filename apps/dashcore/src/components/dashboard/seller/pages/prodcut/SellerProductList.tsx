@@ -93,6 +93,7 @@ const SellerProductList = () => {
         meta: {
           filterVariant: 'text',
         },
+        enableHiding: false,
       },
       {
         accessorFn: (row) => row.lastName,

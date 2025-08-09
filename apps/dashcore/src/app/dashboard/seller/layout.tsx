@@ -15,6 +15,7 @@ import {
 import { Separator } from '@repo/ui/components/separator';
 import { cookies } from 'next/headers';
 import { SellerDashSidebar } from '../../../components/dashboard/seller/layouts/seller-dash-sidebar';
+import SellerNavWidget from '../../../components/dashboard/seller/layouts/seller-nav-widget';
 
 const AdminDashboardLayout = async ({
   children,
@@ -30,13 +31,14 @@ const AdminDashboardLayout = async ({
       style={
         {
           '--sidebar-width': 'calc(var(--spacing) * 72)',
+          // '--sidebar-width': '220px',
         } as React.CSSProperties
       }
     >
       <SellerDashSidebar />
       <SidebarInset className="overflow-hidden">
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 bg-sidebar">
-          <div className="flex items-center gap-2 px-4">
+        <header className="flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 sticky top-0 bg-sidebar px-4">
+          <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator
               orientation="vertical"
@@ -56,6 +58,7 @@ const AdminDashboardLayout = async ({
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <SellerNavWidget />
         </header>
         <div className="py-4 space-y-4">{children}</div>
       </SidebarInset>
