@@ -20,7 +20,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     signup: builder.mutation<SignupResponse, SingupRequest>({
       query: (body) => ({
-        url: '/hub/auth/signup',
+        url: '/auth/hub/signup',
         method: 'POST',
         body,
       }),
@@ -36,7 +36,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     verifyEmail: builder.mutation<SuccessResponse, VerifyEmailRequest>({
       query: ({ token, otp }) => ({
-        url: '/hub/auth/verify-email',
+        url: '/auth/hub/verify-email',
         method: 'POST',
         body: { token, otp },
       }),
@@ -44,7 +44,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     signin: builder.mutation<SinginResponse, SinginRequest>({
       query: ({ email, password, remember }) => ({
-        url: '/hub/auth/signin',
+        url: '/auth/hub/signin',
         method: 'POST',
         body: { email, password, remember },
       }),
@@ -53,7 +53,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     signout: builder.mutation<SuccessResponse, void>({
       query: () => ({
-        url: '/hub/auth/signout',
+        url: '/auth/hub/signout',
         method: 'POST',
       }),
       invalidatesTags: ['User', 'Sessions'],
@@ -61,7 +61,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     signoutSession: builder.mutation<SuccessResponse, string>({
       query: (token) => ({
-        url: `/hub/auth/sessions/${token}/revoke`,
+        url: `/auth/hub/sessions/${token}/revoke`,
         method: 'POST',
       }),
       invalidatesTags: ['Sessions'],
@@ -69,7 +69,7 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     signoutAllSession: builder.mutation<SuccessResponse, void>({
       query: () => ({
-        url: '/hub/auth/sessions/revoke-all',
+        url: '/auth/hub/sessions/revoke-all',
         method: 'POST',
       }),
       invalidatesTags: ['Sessions'],
@@ -77,20 +77,20 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     refreshToken: builder.mutation<SuccessResponse, void>({
       query: () => ({
-        url: '/hub/auth/refresh-token',
+        url: '/auth/hub/refresh-token',
         method: 'POST',
       }),
     }),
 
     getProfile: builder.query<GetProfileResponse, void>({
-      query: () => '/hub/auth/me',
+      query: () => '/auth/hub/me',
       providesTags: ['User'],
       keepUnusedDataFor: 300,
     }),
 
     forgotPassword: builder.mutation<SinginResponse, ForgotPasswordRequest>({
       query: ({ email }) => ({
-        url: '/hub/auth/forgot-password',
+        url: '/auth/hub/forgot-password',
         method: 'POST',
         body: { email },
       }),
@@ -98,31 +98,31 @@ export const userAuthApi = apiSlice.injectEndpoints({
 
     resetPassword: builder.mutation<SinginResponse, ResetPasswordRequest>({
       query: ({ token, newPassword, confirmNewPassword }) => ({
-        url: `/hub/auth/reset-password/${token}`,
+        url: `/auth/hub/reset-password/${token}`,
         method: 'PUT',
         body: { newPassword, confirmNewPassword },
       }),
     }),
 
     getSessions: builder.query<GetSessionsResponse, void>({
-      query: () => '/hub/auth/sessions',
+      query: () => '/auth/hub/sessions',
       providesTags: ['Sessions'],
     }),
 
     generate2FASetup: builder.query<Generate2FASetupResponse, void>({
-      query: () => '/hub/auth/setup-2fa',
+      query: () => '/auth/hub/setup-2fa',
     }),
 
     verify2FAOnSign: builder.mutation<SuccessResponse, Verify2FAOnSignRequest>({
       query: ({ token }) => ({
-        url: `/hub/auth/verify-2fa/${token}`,
+        url: `/auth/hub/verify-2fa/${token}`,
         method: 'POST',
       }),
     }),
 
     confirm2FASetup: builder.mutation<SinginResponse, Confirm2FARequest>({
       query: ({ token, secret }) => ({
-        url: '/hub/auth/enable-2fa',
+        url: '/auth/hub/enable-2fa',
         method: 'PUT',
         body: { token, secret },
       }),
