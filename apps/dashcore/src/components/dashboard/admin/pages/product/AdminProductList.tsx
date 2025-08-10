@@ -17,7 +17,7 @@ import {
 import RowDragHandle from '@repo/ui/components/row-drag-handle';
 import { getSortString } from '@repo/ui/libs/getSortString';
 import { buildQueryParams } from '@repo/ui/libs/buildQueryParams';
-import { useGetSellerProductsQuery } from '../../../../../lib/features/services/dashboard/seller/sellerProductApi';
+
 import { IProduct } from '@repo/ui/types/product-types';
 import MunTable from '@repo/ui/data-grid/mun-table';
 import { Edit, Eye, Plus, Trash } from 'lucide-react';
@@ -27,10 +27,11 @@ import Link from 'next/link';
 import { cn } from '@repo/ui/libs/utils';
 import Image from 'next/image';
 import { rgbDataURL } from '@repo/ui/libs/rgbDataURL';
-import SellerProductGalleryDailog from './particles/SellerProductGalleryDailog';
-import { Switch } from '@repo/ui/components/switch';
 
-const SellerProductList = () => {
+import { Switch } from '@repo/ui/components/switch';
+import { useGetAdminProductsQuery } from '../../../../../lib/features/services/dashboard/admin/adminProductApi';
+
+const AdminProductList = () => {
   const columns = useMemo<ColumnDef<IProduct, unknown>[]>(
     () => [
       {
@@ -128,7 +129,6 @@ const SellerProductList = () => {
                         loading="lazy"
                       />
                     ))}
-                <SellerProductGalleryDailog imgs={row.original.imgs} />
               </div>
             ),
             enableColumnFilter: false,
@@ -148,20 +148,6 @@ const SellerProductList = () => {
             meta: { filterVariant: 'text' },
             enableHiding: false,
           },
-          // {
-          //   id: 'basicInfo.description',
-          //   accessorKey: 'basicInfo.description',
-          //   header: 'Description',
-          //   meta: { filterVariant: 'text' },
-          //   cell: ({ getValue }) => (
-          //     <div
-          //       className="max-w-xs truncate"
-          //       dangerouslySetInnerHTML={{
-          //         __html: (getValue() as string) || '',
-          //       }}
-          //     />
-          //   ),
-          // },
           {
             id: 'basicInfo.productType',
             accessorKey: 'basicInfo.productType',
@@ -426,7 +412,7 @@ const SellerProductList = () => {
   const queryParams = buildQueryParams(columnFilters);
   const sort = getSortString(sorting);
 
-  const { data, isError, isLoading, isFetching } = useGetSellerProductsQuery({
+  const { data, isError, isLoading, isFetching } = useGetAdminProductsQuery({
     pagination,
     queryParams,
     sort,
@@ -472,4 +458,4 @@ const SellerProductList = () => {
   );
 };
 
-export default SellerProductList;
+export default AdminProductList;

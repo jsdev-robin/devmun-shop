@@ -73,7 +73,7 @@ const SellerProductCreateVersionOne = () => {
       },
       inventory: {
         sku: 'SKU-001',
-        barcode: '123456789012',
+        barcode: '0255788674302',
         batchNumber: 'BATCH-001',
         warehouseLocation: 'A1',
       },

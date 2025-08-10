@@ -135,6 +135,17 @@ const data = {
 
   navCat: [
     {
+      title: 'Product',
+      url: '#',
+      icon: LayoutGrid,
+      items: [
+        {
+          title: 'Product List',
+          url: '/dashboard/admin/product/list',
+        },
+      ],
+    },
+    {
       title: 'Category Setup',
       url: '#',
       icon: LayoutGrid,

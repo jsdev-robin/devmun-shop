@@ -14,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../../components/dialog';
+import { useDataGrid } from '../contexts/data-grid-contexts';
 
 interface FilterByBarcodeProps {
   onChange?: (value: string) => void;
@@ -28,6 +29,8 @@ const FilterByBarcode: React.FC<FilterByBarcodeProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const beepAudio = useRef<HTMLAudioElement | null>(null);
   const [open, setOpen] = useState(false);
+
+  const { setGlobalFilter } = useDataGrid();
 
   useEffect(() => {
     if (result) {
@@ -56,6 +59,9 @@ const FilterByBarcode: React.FC<FilterByBarcodeProps> = ({
               videoRef.current,
               (result, err) => {
                 if (result) {
+                  if (setGlobalFilter) {
+                    setGlobalFilter(String(result.getText()));
+                  }
                   setResult(result.getText());
                   if (onChange) onChange(result.getText());
                   beepAudio.current?.play().catch(() => {
@@ -79,7 +85,7 @@ const FilterByBarcode: React.FC<FilterByBarcodeProps> = ({
         codeReader.reset();
       };
     }
-  }, [onChange, open]);
+  }, [onChange, open, setGlobalFilter]);
 
   return (
     <Dialog
