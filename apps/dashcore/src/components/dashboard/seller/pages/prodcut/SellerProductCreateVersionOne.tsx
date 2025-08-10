@@ -200,7 +200,7 @@ const SellerProductCreateVersionOne = () => {
     const formData = new FormData();
 
     data.imgs?.forEach((file) => {
-      formData.append('img', file);
+      formData.append('imgs', file);
     });
 
     formData.append('data', JSON.stringify(data));
