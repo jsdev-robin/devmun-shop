@@ -32,19 +32,22 @@ import {
   TableHeader,
   TableRow,
 } from '@repo/ui/components/table';
-import { Trash } from 'lucide-react';
+import { Camera, Delete, Trash } from 'lucide-react';
 import { Checkbox } from '@repo/ui/components/checkbox';
 import { Textarea } from '@repo/ui/components/textarea';
 import { Radio } from '@repo/ui/components/radio';
 import { productSchema } from '../../../../../validation/productSchema';
 import DatePicker from '@repo/ui/components/date-picker';
 import { cn } from '@repo/ui/libs/utils';
+import { useMuntahaDrop } from 'react-muntaha-uploader';
+import Image from 'next/image';
 
 const SellerProductCreateVersionOne = () => {
   const form = useForm<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
     mode: 'onChange',
     defaultValues: {
+      img: [],
       basicInfo: {
         title: '',
         description: '',
@@ -116,6 +119,29 @@ const SellerProductCreateVersionOne = () => {
     });
   };
 
+  const { getRootProps, getInputProps, isDragActive, onDelete, error } =
+    useMuntahaDrop({
+      accept: [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/webp',
+        'image/gif',
+        'image/svg+xml',
+        'image/avif',
+        'image/heic',
+      ],
+      maxSize: 2 * 1024 * 1024,
+      multiple: true,
+      onDrop: (file: File[] | null) => {
+        if (file) {
+          form.setValue('img', file);
+        }
+      },
+    });
+
+  const imgFile = form.watch('img');
+
   return (
     <section>
       <div className="container">
@@ -123,6 +149,67 @@ const SellerProductCreateVersionOne = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Media Assets</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <FormField
+                      control={form.control}
+                      name="img"
+                      render={() => (
+                        <FormItem>
+                          <FormControl>
+                            <div className="grid gap-4 grid-cols-5">
+                              {imgFile &&
+                                imgFile.map((item, i) => (
+                                  <div
+                                    className="aspect-square relative group"
+                                    key={i}
+                                  >
+                                    <Image
+                                      src={URL.createObjectURL(item)}
+                                      alt="Profile image"
+                                      width={600}
+                                      height={600}
+                                      className="size-full object-cover rounded-md"
+                                      priority
+                                    />
+                                    <Button
+                                      variant="destructive"
+                                      size="icon"
+                                      className="absolute top-2 right-2"
+                                      onClick={() => onDelete(i)}
+                                      type="button"
+                                    >
+                                      <Delete />
+                                    </Button>
+                                  </div>
+                                ))}
+                              {imgFile.length < 10 && (
+                                <Card
+                                  className={cn(
+                                    'aspect-square p-0 gap-0',
+                                    isDragActive &&
+                                      'border-blue-500 border-dashed',
+                                  )}
+                                  {...getRootProps()}
+                                >
+                                  <input {...getInputProps()} />
+                                  <div className="flex flex-col items-center justify-center h-full gap-2">
+                                    <Camera className="size-10" />
+                                  </div>
+                                </Card>
+                              )}
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                          {error && error}
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
                 <Card>
                   <CardHeader>
                     <CardTitle>Basic Inforamtion</CardTitle>

@@ -1,6 +1,17 @@
 import { z } from 'zod';
 
 export const productSchema = z.object({
+  img: z
+    .array(
+      z
+        .custom<File>()
+        .refine((file) => file instanceof File, 'Image is required')
+        .refine(
+          (file) => file.type.startsWith('image/'),
+          'Only image files are allowed (jpg, png, etc.)',
+        ),
+    )
+    .length(10, 'Exactly 10 images are required'),
   basicInfo: z.object({
     title: z
       .string()

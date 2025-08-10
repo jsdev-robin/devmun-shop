@@ -20,9 +20,12 @@ import { buildQueryParams } from '@repo/ui/libs/buildQueryParams';
 import { useGetSellerProductsQuery } from '../../../../../lib/features/services/dashboard/seller/sellerProductApi';
 import { IProduct } from '@repo/ui/types/product-types';
 import MunTable from '@repo/ui/data-grid/mun-table';
-import { Edit, Eye, Trash } from 'lucide-react';
+import { Edit, Eye, Plus, Trash } from 'lucide-react';
 import RowPin from '@repo/ui/components/row-pin';
 import { Badge } from '@repo/ui/components/badge';
+import { buttonVariants } from '@repo/ui/components/button';
+import Link from 'next/link';
+import { cn } from '@repo/ui/libs/utils';
 
 const SellerProductList = () => {
   const columns = useMemo<ColumnDef<IProduct, unknown>[]>(
@@ -387,27 +390,38 @@ const SellerProductList = () => {
   return (
     <section>
       <div className="container">
-        <Card>
-          <CardHeader>
-            <CardTitle translate="yes">Product List</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <MunTable
-              data={data?.data}
-              columns={columns}
-              isError={isError}
-              isLoading={isLoading || isFetching}
-              pagination={pagination}
-              setPagination={setPagination}
-              columnFilters={columnFilters}
-              setColumnFilters={setColumnFilters}
-              sorting={sorting}
-              setSorting={setSorting}
-              globalFilter={globalFilter}
-              setGlobalFilter={setGlobalFilter}
-            />
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <div className="flex items-center justify-end">
+            <Link
+              href="/dashboard/seller/product/create/v1"
+              className={cn(buttonVariants())}
+            >
+              <Plus />
+              Add new product
+            </Link>
+          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle translate="yes">Product List</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <MunTable
+                data={data?.data}
+                columns={columns}
+                isError={isError}
+                isLoading={isLoading || isFetching}
+                pagination={pagination}
+                setPagination={setPagination}
+                columnFilters={columnFilters}
+                setColumnFilters={setColumnFilters}
+                sorting={sorting}
+                setSorting={setSorting}
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );
