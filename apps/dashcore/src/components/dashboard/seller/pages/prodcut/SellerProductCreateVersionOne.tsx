@@ -41,6 +41,7 @@ import DatePicker from '@repo/ui/components/date-picker';
 import { cn } from '@repo/ui/libs/utils';
 import { useMuntahaDrop } from 'react-muntaha-uploader';
 import Image from 'next/image';
+import Typography from '@repo/ui/components/typography';
 
 const SellerProductCreateVersionOne = () => {
   const form = useForm<z.infer<typeof productSchema>>({
@@ -132,6 +133,7 @@ const SellerProductCreateVersionOne = () => {
         'image/heic',
       ],
       maxSize: 2 * 1024 * 1024,
+      maxFiles: 10,
       multiple: true,
       onDrop: (file: File[] | null) => {
         if (file) {
@@ -204,7 +206,11 @@ const SellerProductCreateVersionOne = () => {
                             </div>
                           </FormControl>
                           <FormMessage />
-                          {error && error}
+                          {error && (
+                            <Typography variant="sm" textColor="destructive">
+                              {error}
+                            </Typography>
+                          )}
                         </FormItem>
                       )}
                     />
