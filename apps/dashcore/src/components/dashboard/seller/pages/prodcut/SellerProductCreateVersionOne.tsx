@@ -50,7 +50,7 @@ const SellerProductCreateVersionOne = () => {
     resolver: zodResolver(productSchema),
     mode: 'onChange',
     defaultValues: {
-      img: [],
+      imgs: [],
       basicInfo: {
         title: 'Sample Product',
         description: `
@@ -187,19 +187,19 @@ const SellerProductCreateVersionOne = () => {
       multiple: true,
       onDrop: (file: File[] | null) => {
         if (file) {
-          form.setValue('img', file);
+          form.setValue('imgs', file);
         }
       },
     });
 
-  const imgFile = form.watch('img');
+  const imgFile = form.watch('imgs');
 
   const [createProduct, { isLoading }] = useCreateProductMutation();
 
   async function onSubmit(data: z.infer<typeof productSchema>) {
     const formData = new FormData();
 
-    data.img?.forEach((file) => {
+    data.imgs?.forEach((file) => {
       formData.append('img', file);
     });
 
@@ -227,7 +227,7 @@ const SellerProductCreateVersionOne = () => {
                   <CardContent>
                     <FormField
                       control={form.control}
-                      name="img"
+                      name="imgs"
                       render={() => (
                         <FormItem>
                           <FormControl>
@@ -1107,7 +1107,7 @@ const SellerProductCreateVersionOne = () => {
                     </div>
                   </CardContent>
                 </Card>
-                <Button type="submit">
+                <Button type="submit" disabled={isLoading}>
                   {isLoading && <Loader />}
                   Submit
                 </Button>

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const productSchema = z.object({
-  img: z
+  imgs: z
     .array(
       z
         .custom<File>()
@@ -11,7 +11,8 @@ export const productSchema = z.object({
           'Only image files are allowed (jpg, png, etc.)',
         ),
     )
-    .length(10, 'Exactly 10 images are required'),
+    .min(3, 'At least 3 images are required')
+    .max(10, 'No more than 10 images are allowed'),
   basicInfo: z.object({
     title: z
       .string()

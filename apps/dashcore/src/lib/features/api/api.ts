@@ -12,10 +12,10 @@ const mutex = new Mutex();
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   credentials: 'include',
-  prepareHeaders: (headers) => {
-    headers.set('Content-Type', 'application/json');
-    return headers;
-  },
+  // prepareHeaders: (headers) => {
+  //   headers.set('Content-Type', 'application/json');
+  //   return headers;
+  // },
 });
 
 const SKIP_REFRESH_ENDPOINTS = [
