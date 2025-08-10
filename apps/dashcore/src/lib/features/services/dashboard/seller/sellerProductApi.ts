@@ -1,5 +1,6 @@
 import { GetQueryParams, ProductResponse } from '@repo/ui/types/api-response';
 import { apiSlice } from '../../../api/api';
+import { SuccessResponse } from '../../../types';
 
 export const sellerProductsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -13,7 +14,16 @@ export const sellerProductsApi = apiSlice.injectEndpoints({
       },
       keepUnusedDataFor: 300,
     }),
+
+    createProduct: builder.mutation<SuccessResponse, FormData>({
+      query: (formData) => ({
+        url: `/product/dashcore/product`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
   }),
 });
 
-export const { useGetSellerProductsQuery } = sellerProductsApi;
+export const { useGetSellerProductsQuery, useCreateProductMutation } =
+  sellerProductsApi;

@@ -32,7 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from '@repo/ui/components/table';
-import { Camera, Delete, Trash } from 'lucide-react';
+import { Camera, Delete, Trash, Loader } from 'lucide-react';
 import { Checkbox } from '@repo/ui/components/checkbox';
 import { Textarea } from '@repo/ui/components/textarea';
 import { Radio } from '@repo/ui/components/radio';
@@ -42,6 +42,8 @@ import { cn } from '@repo/ui/libs/utils';
 import { useMuntahaDrop } from 'react-muntaha-uploader';
 import Image from 'next/image';
 import Typography from '@repo/ui/components/typography';
+import { useCreateProductMutation } from '../../../../../lib/features/services/dashboard/seller/sellerProductApi';
+import { toast } from 'sonner';
 
 const SellerProductCreateVersionOne = () => {
   const form = useForm<z.infer<typeof productSchema>>({
@@ -50,56 +52,104 @@ const SellerProductCreateVersionOne = () => {
     defaultValues: {
       img: [],
       basicInfo: {
-        title: '',
-        description: '',
+        title: 'Sample Product',
+        description: `
+        <h2>About This Product</h2>
+        <p>This is a <strong>sample product description</strong> created with React Quill. 
+        It includes <em>formatted text</em>, bullet points, and headings to show how rich text content will appear.</p>
+        <ul>
+          <li>High quality material</li>
+          <li>Available in multiple colors</li>
+          <li>Perfect for all seasons</li>
+        </ul>
+        <p>Order now to enjoy <strong>free shipping</strong> and a <span style="color:red;">20% discount</span>.</p>
+      `,
         productType: 'physical',
-        productCode: '',
-        brand: '',
-        color: '',
-        size: '',
-        weight: 0,
+        productCode: 'PROD-001',
+        brand: 'Sample Brand',
+        color: 'Red',
+        size: 'M',
+        weight: 1.2,
       },
       inventory: {
-        sku: '',
-        barcode: '',
-        batchNumber: '',
-        warehouseLocation: '',
+        sku: 'SKU-001',
+        barcode: '123456789012',
+        batchNumber: 'BATCH-001',
+        warehouseLocation: 'A1',
       },
       pricing: {
-        basePrice: 0,
-        salePrice: 0,
+        basePrice: 100,
+        salePrice: 80,
         priceCurrency: 'USD',
         taxInclusive: 'include',
-        discountType: 'fixed',
-        discountValue: 0,
+        discountType: 'percentage',
+        discountValue: 20,
         discountStartDate: undefined,
         discountEndDate: undefined,
       },
-
       categories: {
-        mainCategory: '',
-        subCategory: '',
-        tertiaryCategory: '',
-        productTags: [],
+        mainCategory: 'Clothing',
+        subCategory: 'Shirts',
+        tertiaryCategory: 'Casual',
+        productTags: ['summer', 'casual', 'cotton'],
       },
-
-      variants: [],
-
+      variants: [
+        {
+          sku: 'VAR-001',
+          price: 80,
+          stockQuantity: 50,
+          color: 'Red',
+          size: 'M',
+          salePrice: 70,
+          barcode: '123456789013',
+          weight: 1.1,
+          isActive: true,
+        },
+        {
+          sku: 'VAR-002',
+          price: 82,
+          stockQuantity: 40,
+          color: 'Blue',
+          size: 'L',
+          salePrice: 72,
+          barcode: '123456789014',
+          weight: 1.15,
+          isActive: true,
+        },
+        {
+          sku: 'VAR-003',
+          price: 78,
+          stockQuantity: 60,
+          color: 'Green',
+          size: 'S',
+          salePrice: 68,
+          barcode: '123456789015',
+          weight: 1.05,
+          isActive: true,
+        },
+        {
+          sku: 'VAR-004',
+          price: 85,
+          stockQuantity: 30,
+          color: 'Black',
+          size: 'XL',
+          salePrice: 75,
+          barcode: '123456789016',
+          weight: 1.2,
+          isActive: true,
+        },
+      ],
       seo: {
-        metaTitle: '',
-        metaDescription: '',
-        canonicalUrl: '',
-        keywords: [],
+        metaTitle: 'Sample Product Meta Title',
+        metaDescription: 'This is a meta description for the sample product.',
+        canonicalUrl: 'https://example.com/sample-product',
+        keywords: ['sample', 'product', 'ecommerce'],
       },
       status: 'active',
-      isFreeShipping: false,
+      isFreeShipping: true,
       isAdult: false,
     },
   });
-
-  const onSubmit = (data: z.infer<typeof productSchema>) => {
-    console.log(data);
-  };
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
@@ -143,6 +193,25 @@ const SellerProductCreateVersionOne = () => {
     });
 
   const imgFile = form.watch('img');
+
+  const [createProduct, { isLoading }] = useCreateProductMutation();
+
+  async function onSubmit(data: z.infer<typeof productSchema>) {
+    const formData = new FormData();
+
+    data.img?.forEach((file) => {
+      formData.append('img', file);
+    });
+
+    formData.append('data', JSON.stringify(data));
+
+    await toast.promise(createProduct(formData).unwrap(), {
+      loading: 'Creating product...',
+      success: (res) => res?.message || 'Product created successfully.',
+      error: (err) =>
+        err?.data?.message || 'Something went wrong while creating product!',
+    });
+  }
 
   return (
     <section>
@@ -1038,7 +1107,10 @@ const SellerProductCreateVersionOne = () => {
                     </div>
                   </CardContent>
                 </Card>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">
+                  {isLoading && <Loader />}
+                  Submit
+                </Button>
               </div>
             </form>
           </Form>
