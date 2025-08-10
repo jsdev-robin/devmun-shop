@@ -17,19 +17,27 @@ import {
 import RowDragHandle from '@repo/ui/components/row-drag-handle';
 import { getSortString } from '@repo/ui/libs/getSortString';
 import { buildQueryParams } from '@repo/ui/libs/buildQueryParams';
-
 import { IProduct } from '@repo/ui/types/product-types';
 import MunTable from '@repo/ui/data-grid/mun-table';
-import { Edit, Eye, Plus, Trash } from 'lucide-react';
 import RowPin from '@repo/ui/components/row-pin';
-import { Button, buttonVariants } from '@repo/ui/components/button';
-import Link from 'next/link';
-import { cn } from '@repo/ui/libs/utils';
 import Image from 'next/image';
 import { rgbDataURL } from '@repo/ui/libs/rgbDataURL';
-
-import { Switch } from '@repo/ui/components/switch';
 import { useGetAdminProductsQuery } from '../../../../../lib/features/services/dashboard/admin/adminProductApi';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@repo/ui/components/dropdown-menu';
+import { Button } from '@repo/ui/components/button';
+import {
+  EllipsisVertical,
+  PencilIcon,
+  ShareIcon,
+  TrashIcon,
+} from 'lucide-react';
 
 const AdminProductList = () => {
   const columns = useMemo<ColumnDef<IProduct, unknown>[]>(
@@ -57,28 +65,38 @@ const AdminProductList = () => {
       },
       {
         id: 'actions',
-        header: () => (
-          <div className="flex items-center justify-between w-[180px]">
-            <div>Actions</div>
-            <div className="writing-mode-vertical-rl">Online</div>
-          </div>
-        ),
+        header: () => <div className="writing-mode-vertical-rl">Online</div>,
         cell: () => (
-          <div className="flex items-center gap-4">
-            <Button variant="outline" size="icon" className="size-8">
-              <Eye />
-            </Button>
-            <Button variant="outline" size="icon" className="size-8">
-              <Edit />
-            </Button>
-            <Button variant="destructive" size="icon" className="size-8">
-              <Trash />
-            </Button>
-            <Switch />
+          <div className="flex items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  <EllipsisVertical />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuGroup className="*:data-[slot=dropdown-menu-item]:[&>svg]:text-muted-foreground">
+                  <DropdownMenuItem>
+                    <PencilIcon />
+                    Edit
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <ShareIcon />
+                    Share
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem variant="destructive">
+                    <TrashIcon />
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ),
-        size: 200,
-        maxSize: 200,
+        size: 60,
+        minSize: 60,
+        maxSize: 60,
         enableColumnFilter: false,
       },
       {
@@ -186,36 +204,7 @@ const AdminProductList = () => {
           },
         ],
       },
-      {
-        id: 'inventory',
-        header: 'Inventory',
-        columns: [
-          {
-            id: 'inventory.sku',
-            accessorKey: 'inventory.sku',
-            header: 'SKU',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'inventory.barcode',
-            accessorKey: 'inventory.barcode',
-            header: 'Barcode',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'inventory.batchNumber',
-            accessorKey: 'inventory.batchNumber',
-            header: 'Batch Number',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'inventory.warehouseLocation',
-            accessorKey: 'inventory.warehouseLocation',
-            header: 'Warehouse Location',
-            meta: { filterVariant: 'text' },
-          },
-        ],
-      },
+
       {
         id: 'pricing',
         header: 'Pricing',
@@ -250,113 +239,7 @@ const AdminProductList = () => {
             header: 'Discount Type',
             meta: { filterVariant: 'select' },
           },
-          {
-            id: 'pricing.discountValue',
-            accessorKey: 'pricing.discountValue',
-            header: 'Discount Value',
-            meta: { filterVariant: 'number' },
-          },
-          {
-            id: 'pricing.discountStartDate',
-            accessorKey: 'pricing.discountStartDate',
-            header: 'Discount Start',
-            meta: { filterVariant: 'date' },
-          },
-          {
-            id: 'pricing.discountEndDate',
-            accessorKey: 'pricing.discountEndDate',
-            header: 'Discount End',
-            meta: { filterVariant: 'date' },
-          },
         ],
-      },
-      {
-        id: 'categories',
-        header: 'Categories',
-        columns: [
-          {
-            id: 'categories.mainCategory',
-            accessorKey: 'categories.mainCategory',
-            header: 'Main Category',
-            meta: { filterVariant: 'select' },
-          },
-          {
-            id: 'categories.subCategory',
-            accessorKey: 'categories.subCategory',
-            header: 'Sub Category',
-            meta: { filterVariant: 'select' },
-          },
-          {
-            id: 'categories.tertiaryCategory',
-            accessorKey: 'categories.tertiaryCategory',
-            header: 'Tertiary Category',
-            meta: { filterVariant: 'select' },
-          },
-          {
-            id: 'categories.productTags',
-            accessorKey: 'categories.productTags',
-            header: 'Product Tags',
-            cell: ({ getValue }) =>
-              (getValue() as string[] | undefined)?.join(', ') ?? '',
-            meta: { filterVariant: 'text' },
-          },
-        ],
-      },
-      {
-        id: 'variants',
-        header: 'Variants',
-        columns: [
-          {
-            id: 'variants.count',
-            accessorFn: (row) => row.variants?.length ?? 0,
-            header: 'Variants Count',
-            meta: { filterVariant: 'number' },
-          },
-        ],
-      },
-      {
-        id: 'seo',
-        header: 'SEO',
-        columns: [
-          {
-            id: 'seo.metaTitle',
-            accessorKey: 'seo.metaTitle',
-            header: 'Meta Title',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'seo.metaDescription',
-            accessorKey: 'seo.metaDescription',
-            header: 'Meta Description',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'seo.canonicalUrl',
-            accessorKey: 'seo.canonicalUrl',
-            header: 'Canonical URL',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'seo.slug',
-            accessorKey: 'seo.slug',
-            header: 'Slug',
-            meta: { filterVariant: 'text' },
-          },
-        ],
-      },
-      {
-        id: 'isFreeShipping',
-        accessorKey: 'isFreeShipping',
-        header: 'Free Shipping',
-        cell: (info) => (info.getValue() ? 'Yes' : 'No'),
-        meta: { filterVariant: 'select' },
-      },
-      {
-        id: 'isAdult',
-        accessorKey: 'isAdult',
-        header: 'Adult Product',
-        cell: (info) => (info.getValue() ? 'Yes' : 'No'),
-        meta: { filterVariant: 'select' },
       },
       {
         id: 'guides',
@@ -378,22 +261,6 @@ const AdminProductList = () => {
             id: 'guides.email',
             accessorKey: 'guides.email',
             header: 'Email',
-            meta: { filterVariant: 'text' },
-          },
-          {
-            id: 'guides.avatar.url',
-            accessorKey: 'guides.avatar.url',
-            header: 'Avatar URL',
-            cell: (info) => (
-              <a
-                href={info.getValue()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                View
-              </a>
-            ),
             meta: { filterVariant: 'text' },
           },
         ],
@@ -420,40 +287,31 @@ const AdminProductList = () => {
   });
   return (
     <section>
-      <div className="container">
-        <div className="space-y-4">
-          <div className="flex items-center justify-end">
-            <Link
-              href="/dashboard/seller/product/create/v1"
-              className={cn(buttonVariants())}
-            >
-              <Plus />
-              Add new product
-            </Link>
-          </div>
-          <Card>
-            <CardHeader>
-              <CardTitle translate="yes">Product List</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <MunTable
-                data={data?.data}
-                columns={columns}
-                isError={isError}
-                isLoading={isLoading || isFetching}
-                pagination={pagination}
-                setPagination={setPagination}
-                columnFilters={columnFilters}
-                setColumnFilters={setColumnFilters}
-                sorting={sorting}
-                setSorting={setSorting}
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle translate="yes">Product List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <MunTable
+            data={data?.data}
+            columns={columns}
+            isError={isError}
+            isLoading={isLoading || isFetching}
+            pagination={pagination}
+            setPagination={setPagination}
+            columnFilters={columnFilters}
+            setColumnFilters={setColumnFilters}
+            sorting={sorting}
+            setSorting={setSorting}
+            globalFilter={globalFilter}
+            setGlobalFilter={setGlobalFilter}
+            pin={{
+              right: ['basicInfo.title'],
+            }}
+            isSplit={true}
+          />
+        </CardContent>
+      </Card>
     </section>
   );
 };
