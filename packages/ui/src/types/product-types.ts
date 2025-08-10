@@ -11,6 +11,9 @@ export interface IVariant {
 }
 
 export interface IProduct {
+  imgs: {
+    url: string;
+  }[];
   basicInfo: {
     title: string;
     description: string;

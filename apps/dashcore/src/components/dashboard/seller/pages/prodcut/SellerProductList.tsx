@@ -26,6 +26,9 @@ import { Badge } from '@repo/ui/components/badge';
 import { buttonVariants } from '@repo/ui/components/button';
 import Link from 'next/link';
 import { cn } from '@repo/ui/libs/utils';
+import Image from 'next/image';
+import { rgbDataURL } from '@repo/ui/libs/rgbDataURL';
+import SellerProductGalleryDailog from './particles/SellerProductGalleryDailog';
 
 const SellerProductList = () => {
   const columns = useMemo<ColumnDef<IProduct, unknown>[]>(
@@ -95,6 +98,40 @@ const SellerProductList = () => {
         enableColumnFilter: false,
       },
       {
+        id: 'imgs',
+        header: 'Images',
+        columns: [
+          {
+            id: 'imgs',
+            header: 'Images',
+            cell: ({ row }) => (
+              <div className="flex flex-wrap gap-2">
+                {row.original.imgs &&
+                  row.original.imgs
+                    .slice(0, 4)
+                    .map((img, i) => (
+                      <Image
+                        key={i}
+                        src={img.url}
+                        width={32}
+                        height={32}
+                        alt={`Product image ${i + 1}`}
+                        className="w-8 h-8 object-cover rounded"
+                        blurDataURL={rgbDataURL(i)}
+                        placeholder="blur"
+                        loading="lazy"
+                      />
+                    ))}
+                <SellerProductGalleryDailog imgs={row.original.imgs} />
+              </div>
+            ),
+            enableColumnFilter: false,
+            size: 210,
+            maxSize: 210,
+          },
+        ],
+      },
+      {
         id: 'basicInfo',
         header: 'Basic Info',
         columns: [
@@ -105,12 +142,20 @@ const SellerProductList = () => {
             meta: { filterVariant: 'text' },
             enableHiding: false,
           },
-          {
-            id: 'basicInfo.description',
-            accessorKey: 'basicInfo.description',
-            header: 'Description',
-            meta: { filterVariant: 'text' },
-          },
+          // {
+          //   id: 'basicInfo.description',
+          //   accessorKey: 'basicInfo.description',
+          //   header: 'Description',
+          //   meta: { filterVariant: 'text' },
+          //   cell: ({ getValue }) => (
+          //     <div
+          //       className="max-w-xs truncate"
+          //       dangerouslySetInnerHTML={{
+          //         __html: (getValue() as string) || '',
+          //       }}
+          //     />
+          //   ),
+          // },
           {
             id: 'basicInfo.productType',
             accessorKey: 'basicInfo.productType',
