@@ -5,6 +5,7 @@ import HomeMunSpecial from '../../components/pages/home/HomeMunSpecial';
 import HomeBigDeals from '../../components/pages/home/HomeBigDeals';
 import HomeLoveShop from '../../components/pages/home/HomeLoveShop';
 import HomeRecommendation from '../../components/pages/home/HomeRecommendation';
+import HomeShopGift from '../../components/pages/home/HomeShopGift';
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <HomeBigDeals />
       <HomeLoveShop />
       <HomeRecommendation />
+      <HomeShopGift />
     </>
   );
 };
