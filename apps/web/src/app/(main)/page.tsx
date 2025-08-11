@@ -6,6 +6,7 @@ import HomeBigDeals from '../../components/pages/home/HomeBigDeals';
 import HomeLoveShop from '../../components/pages/home/HomeLoveShop';
 import HomeRecommendation from '../../components/pages/home/HomeRecommendation';
 import HomeShopGift from '../../components/pages/home/HomeShopGift';
+import HomeAnyBudget from '../../components/pages/home/HomeAnyBudget';
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <HomeLoveShop />
       <HomeRecommendation />
       <HomeShopGift />
+      <HomeAnyBudget />
     </>
   );
 };
