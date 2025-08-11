@@ -4,6 +4,7 @@ import HomFeatured from '../../components/pages/home/HomFeatured';
 import HomeMunSpecial from '../../components/pages/home/HomeMunSpecial';
 import HomeBigDeals from '../../components/pages/home/HomeBigDeals';
 import HomeLoveShop from '../../components/pages/home/HomeLoveShop';
+import HomeRecommendation from '../../components/pages/home/HomeRecommendation';
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <HomeMunSpecial />
       <HomeBigDeals />
       <HomeLoveShop />
+      <HomeRecommendation />
     </>
   );
 };
