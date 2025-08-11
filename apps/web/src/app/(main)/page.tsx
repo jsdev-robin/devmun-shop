@@ -7,6 +7,7 @@ import HomeLoveShop from '../../components/pages/home/HomeLoveShop';
 import HomeRecommendation from '../../components/pages/home/HomeRecommendation';
 import HomeShopGift from '../../components/pages/home/HomeShopGift';
 import HomeAnyBudget from '../../components/pages/home/HomeAnyBudget';
+import HomeSpecialPrice from '../../components/pages/home/HomeSpecialPrice';
 
 const HomePage = () => {
   return (
@@ -19,7 +20,7 @@ const HomePage = () => {
       <HomeRecommendation />
       <HomeShopGift />
       <HomeAnyBudget />
-      <HomeMunSpecial />
+      <HomeSpecialPrice />
     </>
   );
 };
