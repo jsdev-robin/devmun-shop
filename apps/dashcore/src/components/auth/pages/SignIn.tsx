@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -30,6 +30,10 @@ import SocialAuth from './particles/SocialAuth';
 import { useSigninMutation } from '../../../lib/features/services/auth/authApi';
 
 const SignIn = () => {
+  const [location, setLocation] = useState<{
+    lat: number | null;
+    long: number | null;
+  }>({ lat: null, long: null });
   const [signin, { isLoading }] = useSigninMutation();
   const form = useForm<z.infer<typeof schemas.auth.signin>>({
     resolver: zodResolver(schemas.auth.signin),
@@ -63,6 +67,20 @@ const SignIn = () => {
       },
     );
   }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocation({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+      });
+    }
+  }, []);
+
+  console.log(location);
+
   return (
     <section className="w-full">
       <div className="container max-w-md ">
