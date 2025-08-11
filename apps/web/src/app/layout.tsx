@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Merriweather, Poppins, Roboto } from 'next/font/google';
 import '@repo/ui/globals.css';
+import 'rc-slider/assets/index.css';
+import './style.css';
 import { ThemeProvider } from '@repo/ui/contexts/theme-provider';
 import { Toaster } from '@repo/ui/components/sonner';
 import { cn } from '@repo/ui/libs/utils';

@@ -1,0 +1,24 @@
+.rc-slider-rail {
+  background-color: #d4d4d4;
+  height: 4px;
+}
+
+.rc-slider-track {
+  background-color: #1a1a1a;
+  height: 4px;
+}
+
+.rc-slider-handle {
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.rc-slider-handle:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
