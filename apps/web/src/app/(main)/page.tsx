@@ -19,6 +19,7 @@ const HomePage = () => {
       <HomeRecommendation />
       <HomeShopGift />
       <HomeAnyBudget />
+      <HomeMunSpecial />
     </>
   );
 };
