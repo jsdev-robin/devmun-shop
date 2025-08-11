@@ -23,7 +23,7 @@ const footerItems = [
   {
     heading: 'Sell',
     links: [
-      { label: 'Sell on MUN', href: '/ecommerce/dashboard/sign-in' },
+      { label: 'Sell on MUN', href: '/sell' },
       { label: 'Teams', href: '/teams' },
       { label: 'Forums', href: '/forums' },
       { label: 'Affiliates & Creators', href: '/affiliates' },
