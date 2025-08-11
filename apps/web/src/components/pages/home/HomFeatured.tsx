@@ -88,10 +88,7 @@ const HomFeatured = () => {
               ))
             ) : (
               data.map((item, i) => (
-                <Card
-                  key={i}
-                  className="relative overflow-hidden p-0 gap-0 group"
-                >
+                <Card key={i} className="relative p-0 group">
                   <Link
                     href={`/featured/hub/${item.slug}`}
                     className="absolute inset-0 w-full h-full z-10"
@@ -105,7 +102,7 @@ const HomFeatured = () => {
                     blurDataURL={rgbDataURL(i)}
                     placeholder="blur"
                     loading="lazy"
-                    className="w-full h-full aspect-square object-cover"
+                    className="size-full aspect-square object-cover rounded-xl"
                   />
                   <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
                     <Button variant="secondary" className="gap-0 rounded-full">
