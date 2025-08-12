@@ -31,8 +31,8 @@ const OnboardingWelcome = () => {
   ];
 
   return (
-    <section className="h-screen grid grid-cols-1 md:grid-cols-2">
-      <div className="bg-[url('/images/background/seller.jpg')] bg-[100%_auto] bg-no-repeat p-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 md:h-screen">
+      <div className="bg-[url('/images/background/seller.jpg')] bg-[100%_auto] bg-no-repeat p-4 h-80 md:h-auto">
         <MainLogo className="text-black" />
       </div>
       <div className="h-full overflow-y-auto p-4">
@@ -69,8 +69,23 @@ const OnboardingWelcome = () => {
           </Link>
           <Typography>
             By clicking &quot;Let’s do this&quot; and opening an Mun shop,
-            you’re agreeing to Mun’s Terms of Use, including our Seller Policy,
-            Mun Payments Policy, and Privacy Policy.
+            you’re agreeing to Mun’s{' '}
+            <a href="/terms" className="underline">
+              Terms of Use
+            </a>
+            , including our{' '}
+            <a href="/seller-policy" className="underline">
+              Seller Policy
+            </a>
+            ,{' '}
+            <a href="/payments-policy" className="underline">
+              Mun Payments Policy
+            </a>
+            , and{' '}
+            <a href="/privacy-policy" className="underline">
+              Privacy Policy
+            </a>
+            .
           </Typography>
         </div>
       </div>
